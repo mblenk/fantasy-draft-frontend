@@ -18,11 +18,13 @@ export default function Transfers() {
             try {
                 const { data } = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/getTransfers`, "")
                 
-                const { waivers, trades, draftPicks } = data
+                const { waivers, trades, draftPicks, transactionStats } = data
 
                 setData({
                     waivers,
-                    trades, draftPicks
+                    trades, 
+                    draftPicks,
+                    transactionStats
                 })
             } catch (error) {
                 setError(error.message)
@@ -53,7 +55,8 @@ export default function Transfers() {
                 </div>
                 { chooseContent === 'Waivers' && 
                     <Waivers 
-                        data={data.waivers} 
+                        data={data.waivers}
+                        stats={data.transactionStats} 
                         // setTrackingSet={setTrackingSet} 
                     /> 
                 }

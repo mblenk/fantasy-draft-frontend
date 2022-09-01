@@ -22,7 +22,7 @@ export default function YearlyTransfers() {
         getData()
     }, [])
 
-
+console.log(data)
   return (
     <div className='lg:w-5/6 mx-auto text-tertiary pb-12'>
         { !data && <h2 className='text-2xl'>Fetching Data...</h2>}
@@ -44,7 +44,8 @@ export default function YearlyTransfers() {
                 </div>
                 { chooseContent === 'Waivers' && 
                     <Waivers 
-                        data={data.waivers} 
+                        data={data.waivers}
+                        stats={data.transactionStats} 
                         // setTrackingSet={setTrackingSet} 
                     /> 
                 }

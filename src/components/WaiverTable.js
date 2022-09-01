@@ -31,7 +31,7 @@ export default function WaiverTable({ data, handleTracking, isPending, setModalA
                                 <button
                                     className='text-tertiary border-2 border-tertiary px-2 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'
                                     onClick={() => setModalActive(item)}
-                                >{item.player_out_status ? `${item.profit}` : `${item.profit} pts`}</button>
+                                >{item.player_out_status ? "N/A" : `${item.profit} pts`}</button>
                             }
                         </td>
                     </tr>

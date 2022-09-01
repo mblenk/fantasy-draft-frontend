@@ -15,7 +15,7 @@ export default function RankingRow({ index, months }) {
                 }
 
                 return (
-                    <td key={Math.random()} className='p-2 border-4 border-secondary w-2/12'>TBC</td>
+                    <td key={Math.random()} className='p-2 border-4 border-secondary w-2/12'>-</td>
                 )
             })
         } 

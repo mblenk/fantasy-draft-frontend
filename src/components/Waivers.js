@@ -3,9 +3,10 @@ import { useState } from 'react'
 import WaiverFilters from './WaiverFilters'
 import WaiverTable from './WaiverTable'
 import TransferModal from './TransferModal'
+import WaiverStats from './WaiverStats'
 
 
-export default function Waivers({ data, setTrackingSet }) {
+export default function Waivers({ data, stats, setTrackingSet }) {
     const [isPending] = useState(null)
     const [filteredData, setFilteredData] = useState(data)
     const [modalActive, setModalActive] = useState(null)
@@ -25,6 +26,9 @@ export default function Waivers({ data, setTrackingSet }) {
 
   return (
     <div className="text-center mx-auto animate-fadein w-full">
+        <WaiverStats 
+            data={stats}
+        />
         <WaiverFilters 
             data={data}
             filteredData={filteredData}
