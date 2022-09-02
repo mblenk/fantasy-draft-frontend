@@ -10,10 +10,18 @@ export const useAxios = () => {
       setError(null)
       setIsPending(true)
       try {
-        const response = await axios.get(url + id, { 
-          withCredentials: true, 
-          credentials: 'include' 
-        })
+        const { token } = JSON.parse(localStorage.getItem('user'))
+
+        const response = await axios.get(url + id, {
+            headers: {
+              authorization: `${token}`
+          }
+        }
+        // { 
+        //   withCredentials: true, 
+        //   credentials: 'include' 
+        // }
+        )
         setIsPending(false)
         return response
 
