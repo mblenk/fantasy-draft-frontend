@@ -28,7 +28,7 @@ export default function Login() {
                 withCredentials: true, 
                 credentials: 'include' 
             })
-            if(res.data.user){
+            if(res.data.token){
                 console.log(res.data)
                 localStorage.setItem('user', JSON.stringify(res.data))
                 dispatch({ type: 'LOGIN', payload: res.data })
