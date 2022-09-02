@@ -17,12 +17,7 @@ export default function LiveGameweek() {
       const getData = async () => {
         try {
           const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/liveStats`, "")
-          const { current_event, current_event_finished } = res.data.gwkStatus
-          const update = await updateUserData(`${process.env.REACT_APP_API_URL}/liveData/updateScores`, "" , {
-            playerIds,
-            number: current_event,
-            finished: current_event_finished
-          })
+          const update = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/updateScores`, "")
           setData(res.data)
         } catch (error) {
           setError(error.message)

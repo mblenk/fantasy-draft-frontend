@@ -6,14 +6,14 @@ import { useAuthContext } from './hooks/useAuthContext';
 import { gsap } from "gsap"
 import { useRef, useEffect } from 'react'
 import Year from './pages/years/Year';
-import AllTimeTable from './pages/general_stats/AllTimeTable';
-import AllTime from './pages/general_stats/AllTime';
-import LiveGameweek from './pages/live_season/live_gwk/LiveGameweek';
-import CurrentSeason from './pages/live_season/live_gwk/CurrentSeason';
-import Transfers from './pages/live_season/transfers/Transfers';
-import Squads from './pages/live_season/squads/Squads';
-import Months from './pages/live_season/months/Months';
-import YearlyTransfers from './pages/transfer_centre/YearlyTransfers';
+import AllTimeTable from './pages/general-stats/AllTimeTable';
+import AllTime from './pages/general-stats/AllTime';
+import LiveGameweek from './pages/live-season/live-gwk/LiveGameweek';
+import CurrentSeason from './pages/live-season/live-gwk/CurrentSeason';
+import Transfers from './pages/live-season/transfers/Transfers';
+import Squads from './pages/live-season/squads/Squads';
+import Months from './pages/live-season/months/Months';
+import YearlyTransfers from './pages/transfer-centre/YearlyTransfers';
 
 
 
