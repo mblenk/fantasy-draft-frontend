@@ -14,13 +14,11 @@ export const useAxios = () => {
 
         const response = await axios.get(url + id, {
             headers: {
-              authorization: `${token}`
+              authorization: `${token}`,
+              withCredentials: true, 
+              credentials: 'include' 
+            }
           }
-        }
-        // { 
-        //   withCredentials: true, 
-        //   credentials: 'include' 
-        // }
         )
         setIsPending(false)
         return response
