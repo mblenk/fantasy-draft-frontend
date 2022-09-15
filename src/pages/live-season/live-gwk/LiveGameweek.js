@@ -16,11 +16,11 @@ export default function LiveGameweek() {
     useEffect(() => {
       const getData = async () => {
         try {
-          const test = await fetchUserData('https://fantasy.premierleague.com/api/event-status/')
-          console.log(test.data)
-          // const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/liveStats`, "")
-          // const update = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/updateScores`, "")
-          // setData(res.data)
+          // const test = await fetchUserData('https://fantasy.premierleague.com/api/event-status/')
+          // console.log(test.data)
+          const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/liveStats`, "")
+          const update = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/updateScores`, "")
+          setData(res.data)
         } catch (error) {
           setError(error.message)
         }
