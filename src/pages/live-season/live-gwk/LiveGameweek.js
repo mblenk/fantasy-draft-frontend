@@ -20,6 +20,7 @@ export default function LiveGameweek() {
           // console.log(test.data)
           const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/liveStats`, "")
           const update = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/updateScores`, "")
+          console.log(res.data)
           setData(res.data)
         } catch (error) {
           setError(error.message)
