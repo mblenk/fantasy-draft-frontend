@@ -12,17 +12,17 @@ export default function MonthlyWinners({ months }) {
         <table className='text-center'>
             <thead>
                 <tr className=''>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Rank</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Aug</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Sept</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Oct</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Nov</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Dec</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Jan</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Feb</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Mar</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>Apr</th>
-                    <th className='p-2 border-4 border-secondary w-2/12'>May</th>
+                    <th className='p-2 border-4 border-secondary'>Rank</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">Aug</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">Sept</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">Oct</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">Nov</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">Dec</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">Jan</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">Feb</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">Mar</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">Apr</th>
+                    <th className='p-2 border-4 border-secondary' colSpan="2">May</th>
                 </tr>
             </thead>
             <tbody>

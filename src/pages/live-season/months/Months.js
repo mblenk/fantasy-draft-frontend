@@ -20,8 +20,9 @@ export default function Months() {
 
   return (
     <>
+        { !data && <h2 className='text-2xl text-tertiary text-center '>Fetching Data...</h2>}
         { data && 
-        <div className='text-tertiary w-5/6 mx-auto lg:flex justify-center gap-24'>
+        <div className='text-tertiary w-5/6 mx-auto lg:flex justify-center gap-24 animate-fadein'>
             <CurrentMonth months={data} />
             <MonthlyWinners months={data} />
         </div>
