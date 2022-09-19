@@ -14,6 +14,9 @@ import Transfers from './pages/live-season/transfers/Transfers';
 import Squads from './pages/live-season/squads/Squads';
 import Months from './pages/live-season/months/Months';
 import YearlyTransfers from './pages/transfer-centre/YearlyTransfers';
+import RandomTradeFinder from './pages/transfer-centre/RandomTradeFinder';
+import TradeFinder from './pages/transfer-centre/TradeFinder';
+import DraftFinder from './pages/transfer-centre/DraftFinder';
 
 
 
@@ -56,6 +59,8 @@ function App() {
           <Route path="/squad_stats" element={ user ? <Squads /> : <Login />} />
           <Route path="/monthly_standings" element={ user ? <Months /> : <Login />} />
           <Route path="/transfers/:id" element={ user ? <YearlyTransfers /> : <Login />} />
+          <Route path="/trade_finder" element={ user ? <TradeFinder /> : <Login />} />
+          <Route path="/draft_finder" element={ user ? <DraftFinder /> : <Login />} />
           <Route exact path="/" element={ user ? <Navigate to='/live-gameweek' /> : <Navigate to='/login' /> }/> 
         </Routes>
       </BrowserRouter>

@@ -78,8 +78,16 @@ export default function Navbar() {
             ]
         },
         {
-            title: "Transfer History",
+            title: "Transfer Centre",
             submenu: [
+                {
+                    title:"Trade Finder",
+                    url:"trade_finder"
+                },
+                {
+                    title:"Draft Finder",
+                    url:"draft_finder"
+                },
                 {
                     title:"2022-23",
                     url:"transfers/2022-23"

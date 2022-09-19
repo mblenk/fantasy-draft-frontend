@@ -42,7 +42,7 @@ export default function Waivers({ data, stats, setTrackingSet }) {
         />
         { modalActive && <TransferModal 
             setModalActive={setModalActive} 
-            waiver={modalActive} 
+            transaction={modalActive} 
         />}
     </div>
   )

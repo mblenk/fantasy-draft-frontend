@@ -32,7 +32,7 @@ export default function Transfers() {
         }
         getData()
     }, [])
-
+    
   return (
     <div className='lg:w-5/6 mx-auto text-tertiary pb-12'>
         { !data && !error && <h2 className='text-2xl'>Fetching Data...</h2>}

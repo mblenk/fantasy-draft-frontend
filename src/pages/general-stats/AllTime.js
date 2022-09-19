@@ -17,9 +17,9 @@ export default function AllTime() {
 
 
   return (
-    <div className='lg:w-5/6 mx-auto'>
+    <div className='w-11/12 lg:w-5/6 mx-auto'>
       { data && 
-        <div className='flex justify-between gap-8'>
+        <div className='lg:flex justify-between gap-8'>
           <LeagueTable 
             data={data}
             season={'Total Scores'}

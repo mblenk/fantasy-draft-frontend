@@ -110,10 +110,10 @@ export default function WaiverFilters({ data, setFilteredData }) {
             </label>
         </div>
         <div className="flex gap-4 justify-center">
-            <button type="submit" className='border-2 border-tertiary p-2 lg:w-1/12 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'>Filter</button>
+            <button type="submit" className='border-2 border-tertiary p-2 w-3/12 lg:w-1/12 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'>Filter</button>
             <button 
                 type="button"
-                className='border-2 border-tertiary p-2 lg:w-1/12 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'
+                className='border-2 border-tertiary p-2 w-3/12 lg:w-1/12 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'
                 onClick={handleClearFilter}
             >Clear</button>
         </div>

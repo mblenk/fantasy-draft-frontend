@@ -16,8 +16,8 @@ export default function AllTimeTable() {
     }, [])
     
   return (
-    <div className='lg:w-5/6 mx-auto'>
-        <div className="w-full flex justify-between gap-4">
+    <div className='w-11/12 lg:w-5/6 mx-auto'>
+        <div className="w-full lg:flex justify-between gap-4">
             { data && <LeagueTable data={data.tableData} season={'All-Time'} />}
             { data && <AveragePositions data={data.positionData} />}
         </div>

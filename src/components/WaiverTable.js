@@ -7,12 +7,12 @@ export default function WaiverTable({ data, handleTracking, isPending, setModalA
         <table className='text-center mx-auto animate-fadein'>
             <thead>
                 <tr className=''>
-                    <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>GWK</th>
-                    <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Type</th>
-                    <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Player In</th>
-                    <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Player Out</th>
-                    <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Manager</th>
-                    <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Status</th>
+                    <th className='p-2 lg:p-4 border-4 border-secondary underline underline-offset-4 text-xl'>GWK</th>
+                    <th className='p-2 lg:p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Type</th>
+                    <th className='p-2 lg:p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Player In</th>
+                    <th className='p-2 lg:p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Player Out</th>
+                    <th className='p-2 lg:p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Manager</th>
+                    <th className='p-2 lg:p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Status</th>
                     <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Profit</th>
                 </tr>
             </thead>
@@ -30,7 +30,7 @@ export default function WaiverTable({ data, handleTracking, isPending, setModalA
                             {item.result === 'Successful' &&
                                 <button
                                     className='text-tertiary border-2 border-tertiary px-2 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'
-                                    onClick={() => setModalActive(item)}
+                                    onClick={() => setModalActive({type: 'waiver', data:item})}
                                 >{item.player_out_status ? "N/A" : `${item.profit} pts`}</button>
                             }
                         </td>

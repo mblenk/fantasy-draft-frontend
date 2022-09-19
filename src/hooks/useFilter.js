@@ -17,6 +17,12 @@ export const useFilter = (data) => {
             label: player.name
         }
     })
+    const randomManagerOptions = ['A','B','C','D','E','F','G','H'].map(manager => {
+        return {
+            value: manager,
+            label: manager
+        }
+    })
 
     const statusOptions = [
         {
@@ -59,5 +65,5 @@ export const useFilter = (data) => {
         }
     })
 
-    return { gwkOptions, managerOptions, statusOptions, typeOptions, profitOptions, elementOptions, roundOptions }
+    return { gwkOptions, managerOptions, statusOptions, typeOptions, profitOptions, elementOptions, roundOptions, randomManagerOptions }
 }

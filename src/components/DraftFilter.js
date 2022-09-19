@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import Select from 'react-select'
 import { useFilter } from '../hooks/useFilter'
 
@@ -8,7 +9,9 @@ export default function DraftFilter({ data, setFilteredData }) {
     const [round, setRound] = useState(null)
     const [count, setCount] = useState(data.length)
 
-    const { managerOptions, elementOptions, roundOptions } = useFilter(data)
+    const { pathname } = useLocation()
+
+    const { managerOptions, randomManagerOptions, elementOptions, roundOptions } = useFilter(data)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -36,9 +39,9 @@ export default function DraftFilter({ data, setFilteredData }) {
     }
 
   return (
-    <form className='mb-6' onSubmit={handleSubmit}>
+    <form className='mb-6 p-4 lg:px-0' onSubmit={handleSubmit}>
         <h2 className='underline text-2xl mb-2'>Filters</h2>
-        <div className='flex gap-4 justify-center p-4 mb-2 border-2 border-secondary w-3/5 mx-auto rounded-xl'>
+        <div className='flex gap-4 justify-center p-4 mb-2 border-2 border-secondary lg:w-3/5 mx-auto rounded-xl'>
             <label className='flex flex-col gap-2 text-primary w-2/5'>
                 <span className='text-tertiary underline text-xl'>Player</span>
                 <Select 
@@ -51,7 +54,7 @@ export default function DraftFilter({ data, setFilteredData }) {
             <label className='flex flex-col gap-2 text-primary'>
                 <span className='text-tertiary underline text-xl'>Manager</span>
                 <Select 
-                    options={managerOptions} 
+                    options={pathname === '/draft_finder' ? randomManagerOptions : managerOptions} 
                     isMulti={true}
                     value={managers}
                     onChange={(option) => setManagers(option)}
@@ -67,10 +70,10 @@ export default function DraftFilter({ data, setFilteredData }) {
             </label>
         </div>
         <div className="flex gap-4 justify-center">
-            <button type="submit" className='border-2 border-tertiary p-2 lg:w-1/12 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'>Filter</button>
+            <button type="submit" className='border-2 border-tertiary p-2 w-3/12 lg:w-1/12 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'>Filter</button>
             <button 
                 type="button"
-                className='border-2 border-tertiary p-2 lg:w-1/12 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'
+                className='border-2 border-tertiary p-2 w-3/12 lg:w-1/12 rounded-full transition ease-in hover:bg-tertiary hover:text-primary duration-150'
                 onClick={handleClearFilter}
             >Clear</button>
         </div>

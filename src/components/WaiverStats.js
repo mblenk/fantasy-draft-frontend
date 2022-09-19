@@ -21,7 +21,6 @@ export default function WaiverStats({ data }) {
                         <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Transactions</th>
                         <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Waivers</th>
                         <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Free Agents</th>
-                        <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Success</th>
                         <th className='p-4 border-4 border-secondary underline underline-offset-4 text-xl'>Total Profit</th>
                     </tr>
                 </thead>
@@ -32,7 +31,6 @@ export default function WaiverStats({ data }) {
                             <td className='p-2 border-4 border-secondary'>{item.numberOfTransactions}</td>
                             <td className='p-2 border-4 border-secondary'>{item.numberOfWaivers }</td>
                             <td className='p-2 border-4 border-secondary'>{item.numberOfFreeAgents}</td>
-                            <td className='p-2 border-4 border-secondary'>{`${item.successRate}%`}</td>
                             <td className='p-2 border-4 border-secondary'>{item.totalProfit}</td>
                         </tr>
                     )
