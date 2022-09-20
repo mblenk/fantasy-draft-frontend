@@ -1,10 +1,16 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuthContext } from './useAuthContext'
+
 
 
 export const useAxios = () => {
     const [error, setError] = useState(null)
     const [isPending, setIsPending] = useState(null)
+    const { dispatch } = useAuthContext()
+    const navigate = useNavigate()
+
 
     const fetchUserData = async (url, id) => {
       setError(null)
@@ -25,8 +31,15 @@ export const useAxios = () => {
 
       }
       catch(err) {
-        setError(err.message)
+        console.log(err.response.data)
+        setError(err)
         setIsPending(false)
+
+        if(err.response.data === 'JWT Expired') {
+          localStorage.removeItem('user')
+          dispatch({ type: 'LOGOUT' })
+          navigate('/login')
+        }
       }
     }
 
