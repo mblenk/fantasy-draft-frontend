@@ -3,11 +3,10 @@ import { useLocation } from 'react-router-dom'
 import Select from 'react-select'
 import { useFilter } from '../hooks/useFilter'
 
-export default function DraftFilter({ data, setFilteredData }) {
+export default function DraftFilter({ data, setFilteredData, count, setCount }) {
     const [player, setPlayer] = useState(null)
     const [managers, setManagers] = useState(null)
     const [round, setRound] = useState(null)
-    const [count, setCount] = useState(data.length)
 
     const { pathname } = useLocation()
 
