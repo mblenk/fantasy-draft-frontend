@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAxios } from '../../hooks/useAxios'
+import { useAuthContext } from '../../hooks/useAuthContext'
 import LeagueTable from '../../components/LeagueTable'
 import AveragePositions from './AveragePositions'
 
 export default function AllTimeTable() {
     const { fetchUserData } = useAxios()
     const [data, setData] = useState(null)
+    const { dispatch } = useAuthContext()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getData = async () => {
-            const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/year/data?type=table`, "")
-            setData(res.data)
+            try {
+                const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/year/data?type=table`, "")
+                setData(res.data)
+            } catch (error) {
+                if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.'){
+                    dispatch({ type: 'LOGOUT' })
+                    navigate('/login')
+                    alert('Your login session has expired.')
+                }
+            }
+            
         }
         getData()
     }, [])

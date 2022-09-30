@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAxios } from '../../hooks/useAxios'
+import { useAuthContext } from '../../hooks/useAuthContext'
 import Waivers from '../../components/Waivers'
 import Trades from '../../components/Trades'
 import Draft from '../../components/Draft'
@@ -12,12 +14,24 @@ export default function YearlyTransfers() {
     const [chooseContent, setChooseContent] = useState('Waivers')
     const { fetchUserData } = useAxios()
     const { id } = useParams()
+    const { dispatch } = useAuthContext()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getData = async () => {
-            const { data } = await fetchUserData(`${process.env.REACT_APP_API_URL}/year/data/`, id)
+            try {
+                const { data } = await fetchUserData(`${process.env.REACT_APP_API_URL}/year/data/`, id)
+                
+                setData(data)
+            } catch (error) {
+                console.log(error.message)
 
-            setData(data)
+                if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.'){
+                    dispatch({ type: 'LOGOUT' })
+                    navigate('/login')
+                    alert('Your login session has expired.')
+                }
+            }
         }
         getData()
     }, [])

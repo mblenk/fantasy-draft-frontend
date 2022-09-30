@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAxios } from '../../../hooks/useAxios'
+import { useAuthContext } from '../../../hooks/useAuthContext'
 import SquadStats from './SquadStats'
 import SquadTotals from './SquadTotals'
 
@@ -7,12 +9,24 @@ import SquadTotals from './SquadTotals'
 export default function Squads() {
     const [data, setData] = useState(null)
     const { fetchUserData } = useAxios()
-
+    const { dispatch } = useAuthContext()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getData = async () => {
-        const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/liveStats`, "")
-        setData(res.data)
+          try {
+            const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/liveStats`, "")
+            setData(res.data)
+          } catch (error) {
+            // setError(error.message)
+            console.log(error.message)
+
+            if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.'){
+              dispatch({ type: 'LOGOUT' })
+              navigate('/login')
+              alert('Your login session has expired.')
+            }
+          }
         }
         getData()
     }, [])

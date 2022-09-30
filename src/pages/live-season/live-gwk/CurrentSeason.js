@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAxios } from '../../../hooks/useAxios'
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import PreviousYear from '../../years/Year'
@@ -7,16 +8,27 @@ export default function CurrentSeason() {
   const { fetchUserData, updateUserData } = useAxios()
   const [data, setData] = useState(null)
   const [latestGameweek, setLatestGameweek] = useState(null)
-  const { playerIds } = useAuthContext()
+  const { dispatch } = useAuthContext()
+  const navigate = useNavigate()
 
   
   useEffect(() => {
     const getData = async () => {
-      const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/liveStats`, "")
-      const { current_event, current_event_finished } = res.data.gwkStatus
-      const update = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/updateScores`, "")
-      current_event_finished ? setLatestGameweek(current_event) : setLatestGameweek(current_event - 1)
-      setData(res.data)
+      try {
+        const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/liveStats`, "")
+        const { current_event, current_event_finished } = res.data.gwkStatus
+        const update = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/updateScores`, "")
+        current_event_finished ? setLatestGameweek(current_event) : setLatestGameweek(current_event - 1)
+        setData(res.data)
+      } catch (error) {
+        console.log(error.message)
+
+        if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.'){
+          dispatch({ type: 'LOGOUT' })
+          navigate('/login')
+          alert('Your login session has expired.')
+        }
+      }
     }
     getData()
   }, [])

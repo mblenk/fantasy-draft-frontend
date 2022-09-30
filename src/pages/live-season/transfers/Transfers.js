@@ -3,8 +3,8 @@ import { useAxios } from '../../../hooks/useAxios'
 import Waivers from '../../../components/Waivers'
 import Trades from '../../../components/Trades'
 import Draft from '../../../components/Draft'
-
-
+import { useAuthContext } from '../../../hooks/useAuthContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function Transfers() {
     const [data, setData] = useState(null)
@@ -12,6 +12,8 @@ export default function Transfers() {
     const [chooseContent, setChooseContent] = useState('Waivers')
     // const [trackingSet, setTrackingSet] = useState(null)
     const { fetchUserData } = useAxios()
+    const { dispatch } = useAuthContext()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getData = async () => {
@@ -28,6 +30,12 @@ export default function Transfers() {
                 })
             } catch (error) {
                 setError(error.message)
+
+                if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.'){
+                    dispatch({ type: 'LOGOUT' })
+                    navigate('/login')
+                    alert('Your login session has expired.')
+                }
             }
         }
         getData()

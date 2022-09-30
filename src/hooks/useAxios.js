@@ -15,9 +15,10 @@ export const useAxios = () => {
     const fetchUserData = async (url, id) => {
       setError(null)
       setIsPending(true)
-      try {
-        const { token } = JSON.parse(localStorage.getItem('user'))
 
+      const { token } = JSON.parse(localStorage.getItem('user'))
+
+      try {
         const response = await axios.get(url + id, {
             headers: {
               authorization: `${token}`, 

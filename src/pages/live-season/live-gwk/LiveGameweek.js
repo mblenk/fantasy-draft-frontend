@@ -20,10 +20,17 @@ export default function LiveGameweek() {
         try {
           const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/liveStats`, "")
           const update = await fetchUserData(`${process.env.REACT_APP_API_URL}/liveData/updateScores`, "")
+          console.log(res)
           setData(res.data)
         } catch (error) {
           // setError(error.message)
-          console.log(error)
+          console.log(error.message)
+
+          if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.'){
+            dispatch({ type: 'LOGOUT' })
+            navigate('/login')
+            alert('Your login session has expired.')
+          }
         }
       }
       getData()
