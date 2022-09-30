@@ -17,7 +17,7 @@ export default function AllTimeTable() {
                 const res = await fetchUserData(`${process.env.REACT_APP_API_URL}/year/data?type=table`, "")
                 setData(res.data)
             } catch (error) {
-                if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.'){
+                if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.' || error.message === 'Cannot read properties of null (reading \'token\')'){
                     dispatch({ type: 'LOGOUT' })
                     navigate('/login')
                     alert('Your login session has expired.')

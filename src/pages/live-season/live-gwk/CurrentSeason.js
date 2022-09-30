@@ -23,7 +23,7 @@ export default function CurrentSeason() {
       } catch (error) {
         console.log(error.message)
 
-        if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.'){
+        if(error.message === 'Cannot destructure property \'token\' of \'JSON.parse(...)\' as it is null.' || error.message === 'Cannot read properties of null (reading \'token\')'){
           dispatch({ type: 'LOGOUT' })
           navigate('/login')
           alert('Your login session has expired.')
