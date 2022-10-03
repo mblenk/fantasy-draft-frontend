@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
 import axios from 'axios'
+import { useEffect } from 'react'
 
 export default function Login() {
     const { dispatch } = useAuthContext()
@@ -10,8 +11,40 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const [usernameError, setUsernameError] = useState('')
     const [passwordError, setPasswordError] = useState('')
+    const [guestError, setGuestError] = useState('')
 
     const navigate = useNavigate()
+    const location = useLocation().search
+
+    useEffect(() => {
+        const token = new URLSearchParams(location).get('token')
+
+        if(token) {
+            const authenticateGuestUser = async (token) => {
+                try {
+                    const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/checkguestuser`, {
+                        token
+                    },
+                    { 
+                        withCredentials: true, 
+                        credentials: 'include' 
+                    })
+                    if(res.data.token){
+                        localStorage.setItem('user', JSON.stringify(res.data))
+                        dispatch({ type: 'LOGIN', payload: res.data })
+                        navigate('/')
+                    }
+                } catch (err) {
+                    if(err.response.data === 'jwt expired') {
+                        // alert('This authorisation link has expired, please request a new link to access the site.')
+                        setGuestError('This authorisation link has expired, please request a new link to access the site.')
+                    }
+                }
+            }
+            authenticateGuestUser(token)
+        }
+    }, [])
+    
 
 
     const handleSubmit = async (e) => {
@@ -73,7 +106,7 @@ export default function Login() {
             { passwordError && <p>{passwordError}</p> }
             </label>
             <button className='bg-primary border-secondary border-2 w-3/4 lg:w-1/4 p-2 rounded-full hover:bg-secondary hover:text-primary focus:outline-none focus-visible:ring-4 ring-secondary transition-shadow'>Log In</button>
+            { guestError && <p>{guestError}</p> }
         </form>
-    
   )
 }
