@@ -18,7 +18,7 @@ export default function Login() {
 
     useEffect(() => {
         const token = new URLSearchParams(location).get('token')
-
+        console.log(token)
         if(token) {
             const authenticateGuestUser = async (token) => {
                 try {
