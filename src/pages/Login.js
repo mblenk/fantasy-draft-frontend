@@ -39,6 +39,7 @@ export default function Login() {
                         // alert('This authorisation link has expired, please request a new link to access the site.')
                         setGuestError('This authorisation link has expired, please request a new link to access the site.')
                     }
+                    console.log(err)
                 }
             }
             authenticateGuestUser(token)
